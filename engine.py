@@ -15,22 +15,30 @@ class TeleBot:
 	def __init__(self):
 		self.server = webhook.Server()
 
+
+
+	def generateKeyboard(self, markup, layout):
+		pass
+
+
+
+
 	@dispatch.message_handler(commands = ['start', 'help'])
 	async def greet(message):
-		print(message)
+		config.config.logg(message, sep = True)
 		await message.reply('Hello')
 
 
 
 	@dispatch.message_handler()
 	async def default_answer(message):
-		print('\n\n')
-		print(message)
+		config.config.logg(message, sep = True)
 
 
 		markup = types.ReplyKeyboardMarkup()
 		markup.add(types.KeyboardButton('Button'))
 		await message.answer(message.text, reply_markup = markup)
+
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ import json
 
 class Server:
 	def __init__(self):
-		self.ADDRESS = None
+		self.ADDRESS = 'lbcontrol.pythonanywhere.com'
 
 
 	def send(self):

@@ -1,13 +1,13 @@
-
-
-
 class Config:
 	def __init__(self):
-		self.TOKEN = 'AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
+		self.TOKEN = '1912018363:AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
 		self.SERVER_TOKEN = ''
 
 
-	def logg(self, message, level = 3):
+	def logg(self, message, level = 3, sep = False):
+		if sep:
+			print('\n\n')
+
 		if level == 1:
 			print(f'[!] {message}')
 		elif level == 2:
