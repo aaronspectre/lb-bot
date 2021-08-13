@@ -1,14 +1,14 @@
 import config
 import webhook
 
-from aiogram import Bot, Dispatcher, executor
+from aiogram import Bot, Dispatcher, executor, types
 
 
 
 
 class TeleBot:
 
-	bot = Bot(token = config.TOKEN)
+	bot = Bot(token = config.config.TOKEN)
 	dispatch = Dispatcher(bot)
 
 
@@ -26,7 +26,11 @@ class TeleBot:
 	async def default_answer(message):
 		print('\n\n')
 		print(message)
-		await message.answer(message.text)
+
+
+		markup = types.ReplyKeyboardMarkup()
+		markup.add(types.KeyboardButton('Button'))
+		await message.answer(message.text, reply_markup = markup)
 
 
 if __name__ == '__main__':
