@@ -1,6 +1,6 @@
 class Config:
 	def __init__(self):
-		self.TOKEN = '1912018363:AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
+		self.TOKEN = 'AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
 		self.SERVER_TOKEN = ''
 
 
