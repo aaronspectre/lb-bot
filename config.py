@@ -23,4 +23,16 @@ class Config:
 			self.logg(e, 1)
 
 
+
+class UserData:
+	def __init__(self):
+		self.id = 0
+		self.username = None
+		self.contact = None
+		self.location = None
+		self.name = None
+
+
+
+user = UserData()
 config = Config()

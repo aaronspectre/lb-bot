@@ -1,0 +1,18 @@
+@font-face{
+	font-family: Segoe;
+	src: url('/static/webfonts/SegoeTVRegular.TTF');
+}
+
+*{
+	transition: .3s ease;
+	font-family: Segoe;
+}
+
+.auth-panel{
+	width: 40%;
+	margin: auto;
+	margin-top: 10vh;
+	padding: 3vh;
+	border-radius: 10px;
+	box-shadow: rgba(65, 69, 88, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px;
+}
