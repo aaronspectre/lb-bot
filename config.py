@@ -1,6 +1,6 @@
 class Config:
 	def __init__(self):
-		self.TOKEN = 'AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
+		self.TOKEN = '1912018363:AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
 		self.SERVER_TOKEN = ''
 
 
@@ -16,6 +16,14 @@ class Config:
 			print(f'[+] {message}')
 
 
+
+	def getName(self, inline_set, key):
+		for name_set in inline_set:
+			for name in name_set:
+				if name.callback_data == key:
+					return name.text
+
+
 	def safer(self, func):
 		try:
 			func()
@@ -29,10 +37,14 @@ class UserData:
 		self.id = 0
 		self.username = None
 		self.contact = None
-		self.location = None
+		self.location = {}
 		self.name = None
+		self.chat_id = None
 
 
 
 user = UserData()
 config = Config()
+step = 0
+progress = str()
+busket = []

@@ -4,8 +4,7 @@ from django.db import models
 
 
 class Order(models.Model):
-	customer = models.CharField(max_length = 100)
-	customer_id = models.IntegerField()
+	customer_id = models.IntegerField(default = 0)
 	customer_username = models.CharField(max_length = 100)
 	customer_phone = models.CharField(max_length = 30)
 	customer_location = models.CharField(max_length = 40)
