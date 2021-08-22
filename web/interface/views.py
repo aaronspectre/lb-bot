@@ -10,7 +10,10 @@ from bot.models import Order
 import json
 
 def auth(request):
-	return render(request, 'auth.html')
+	if request.user.is_anonymous:
+		return render(request, 'auth.html')
+	else:
+		return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
 
 
 def signIn(request):
@@ -33,17 +36,36 @@ def dashboard(request, status):
 	return render(request, 'dashboard.html', {'orders': orders})
 
 
+
 @login_required
-def orderValidation(request, id):
+def cashbox(request):
+
+	if request.user.username != 'dev':
+		return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
+
+	orders = Order.objects.all()
+	return render(request, 'cashbox.html', {'orders': orders})
+
+
+
+@login_required
+def orderValidation(request, id, action):
 	order = get_object_or_404(Order, id = id)
+
+	if action == 'reject':
+		order.status = 'reject'
+		order.save()
+		return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
+
+
+
+
 	if order.status == 'pending' and order.source == 'robot':
 		order.status = 'delivery'
 	elif order.status == 'pending' and order.source == 'cash-register':
 		order.status = 'done'
-		order.source = 'check-square'
 	elif order.status == 'delivery':
 		order.status = 'done'
-		order.source = 'check-square'
 
 	order.save()
 	return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))

@@ -9,7 +9,7 @@ data = {
 	"phone": "+998983147766",
 	"location": {"latitude": 41.317896, "longitude": 69.23791},
 	"id": 710810997,
-	"username": "kaktu2"
+	"username": "@kaktu2"
 }
 
 try:

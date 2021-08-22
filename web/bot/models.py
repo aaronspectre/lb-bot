@@ -14,8 +14,7 @@ class Order(models.Model):
 	source = models.CharField(max_length = 10, default = 'cash-register')
 	price = models.FloatField(max_length = 30)
 	status = models.CharField(max_length = 10, default = 'pending')
-	ready_status = models.CharField(max_length = 10, default = 'sold')
 	date = models.DateTimeField()
 
 	def __str__(self):
-		return self.customer_name
+		return self.customer_name+' - '+str(self.price)+'uzs'

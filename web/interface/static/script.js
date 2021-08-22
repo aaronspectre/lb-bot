@@ -5,6 +5,10 @@ order_list = document.getElementById('order_list')
 product_list = document.getElementById('product_list')
 order = document.getElementById('order')
 
+action_button = document.getElementById('send-order')
+action_button.disabled = true
+console.log(action_button)
+
 
 price_list = {
 	'Taco': 9000,
@@ -27,4 +31,5 @@ function add_order(){
 	price.value = Number(price.value)+(Number(price_list[product_list.value]) * Number(amount.value))
 
 	amount.value = '1'
+	action_button.disabled = false
 }

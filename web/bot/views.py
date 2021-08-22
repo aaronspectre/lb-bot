@@ -16,7 +16,7 @@ def index(request):
 		order.date = timezone.now()
 		order.customer_name = data['cname']
 		order.customer_phone = data['phone']
-		# order.customer_location = data['location']
+		order.customer_location = json.dumps(data['location'])
 		order.customer_username = data['username']
 		order.customer_id = int(data['id'])
 		order.source = 'robot'

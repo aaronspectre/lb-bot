@@ -27,7 +27,8 @@
 						<li><a href="{% url 'dashboard' 'pending' %}" class="sidebar-menu-item active"><span class="fas fa-columns"></span> Orders</a></li>
 						<li><a href="{% url 'dashboard' 'delivery' %}" class="sidebar-menu-item"><span class="fas fa-truck"></span> Delivery</a></li>
 						<li><a href="{% url 'dashboard' 'done' %}" class="sidebar-menu-item"><span class="fas fa-clipboard-check"></span> Done</a></li>
-						<li><a href="" class="sidebar-menu-item"><span class="fas fa-cash-register"></span> Cashbox</a></li>
+						<li><a href="{% url 'dashboard' 'reject' %}" class="sidebar-menu-item"><span class="fas fa-times-circle"></span> Rejected</a></li>
+						<li><a href="{% url 'cashbox' %}" class="sidebar-menu-item"><span class="fas fa-cash-register"></span> Cashbox</a></li>
 						<li><a href="" class="sidebar-menu-item"><span class="fas fa-info-circle"></span> Log</a></li>
 					</ul>
 				</div>
@@ -45,39 +46,53 @@
 							<a href=""><span class="fas fa-sign-out-alt"></span></a>
 						</div>
 					</div>
-					<h4>Orders <a href="{% url 'add' %}"><span class="fas fa-plus"></span></a></h4>
-					<div class="row mt-3">
-						{% if orders %}
-						{% for order in orders %}
-							<div class="col-md-4 mt-3">
-								<div class="order-card" style="background: #0F52BA;">
-									<h6>{{order.customer_name}}<span style="float: right;" class="fas fa-{{order.source}}"></span></h6>
-									<small>id: {{order.id}}</small><br>
-									<small>+{{order.customer_phone}} <h5 style="float: right;">{{order.price}} uzs</h5></small><br>
-									<small>@{{order.customer_username}}</small><br><br>
-									<p class="m-0">Order:</p>
-									<ul>
-										{% for item in order.order|parser %}
-											<li>{{item}}</li>
-										{% endfor %}
-									</ul>
-									{% if 'done' in order.status %}
-										<div class="order-card-footer text-center mt-4">
-											Order Done
-										</div>
-									{% else %}
-										<div class="order-card-footer text-center mt-4">
-											<a href="{% url 'orderValidation' order.id %}" class="order-card-reject-button">Reject</a>
-											<a href="{% url 'orderValidation' order.id %}" class="order-card-done-button">Done</a>
-										</div>
-									{% endif %}
+					{% block main %}
+						<h4>Orders <a href="{% url 'add' %}"><span class="fas fa-plus"></span></a></h4>
+						<div class="row mt-3">
+							{% if orders %}
+							{% for order in orders %}
+								<div class="col-md-4 mt-3">
+									<div class="order-card order-card-{{order.source}}">
+										<h6>
+											{{order.customer_name}}
+											{% if 'robot' in order.source %}
+											<span style="float: right;" class="fas fa-{{order.source}}"></span>
+											<a><span style="float: right;" class="fas fa-map-marker-alt">&ensp;</span></a>
+											{% else %}
+											<span style="float: right;" class="fas fa-{{order.source}}"></span>
+											{% endif %}
+										</h6>
+										<small>id: {{order.id}}</small><br>
+										<small>{{order.customer_phone}} <h5 style="float: right;">{{order.price}} uzs</h5></small><br>
+										<small>{{order.customer_username}}</small><br><br>
+										<p class="m-0">Order:</p>
+										<ul>
+											{% for item in order.order|parser %}
+												<li>{{item}}</li>
+											{% endfor %}
+										</ul>
+										{% if 'done' in order.status %}
+											<div class="order-card-footer text-center mt-4">
+												Order Done
+											</div>
+										{% elif 'reject' in order.status %}
+											<div class="order-card-footer text-center mt-4">
+												Order Rejected
+											</div>
+										{% else %}
+											<div class="order-card-footer text-center mt-4">
+												<a href="{% url 'orderValidation' order.id 'reject' %}" class="order-card-reject-button">Reject</a>
+												<a href="{% url 'orderValidation' order.id 'done' %}" class="order-card-done-button">Done</a>
+											</div>
+										{% endif %}
+									</div>
 								</div>
-							</div>
-						{% endfor %}
-						{% else %}
-							<div class="col-md-12">No orders</div>
-						{% endif %}
-					</div>
+							{% endfor %}
+							{% else %}
+								<div class="col-md-12">No orders</div>
+							{% endif %}
+						</div>
+					{% endblock %}
 				</div>
 			</div>
 		</div>

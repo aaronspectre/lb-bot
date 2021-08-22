@@ -126,11 +126,45 @@
 }
 
 .order-card-reject-button{
-	background: #cc3038;
+	background: #E84545;
 	margin-right: .5vh;
 }
 
 .order-card-done-button{
-	background: #36cc30;
+	background: #17B978;
 	margin-left: .5vh;
+}
+
+
+.order-card-cash-register{
+	background: #112D4E;
+}
+
+.order-card-robot{
+	background: #1E2022;
+}
+
+
+.cashbox-card{
+	width: 100%;
+	padding: 4vh;
+	color: white;
+	margin-bottom: 2vh;
+	border-radius: 15px;
+}
+
+.cashbox-card-done{
+	background: #17B978;
+}
+
+.cashbox-card-reject{
+	background: #B83B5E;
+}
+
+.cashbox-card-pending{
+	background: #F08A5D;
+}
+
+.cashbox-card-total{
+	background: #00ADB5;
 }

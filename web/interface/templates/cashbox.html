@@ -1,0 +1,24 @@
+{% extends 'dashboard.html' %}
+{% load order-filters %}
+{% block main %}
+	<h4>Cashbox</h4>
+	<div class="row mt-4">
+		<div class="col-md-12">
+			<div class="cashbox-card cashbox-card-total">
+					<p style="float: right;">{% now "jS F" %}</p>
+					<h5>{{ orders|summ }} uzs - Total</h5>
+				</div>
+			{% if orders %}
+			{% for order in orders %}
+				<div class="cashbox-card cashbox-card-{{order.status}}">
+					<p style="float: right;">{{order.date}}</p>
+					<h5>{{order.price}} uzs - {{order.customer_name}}</h5>
+					<font size="2">id: {{order.id}}&emsp;</font><span class="fas fa-{{order.source}}"></span>
+				</div>
+			{% endfor %}
+			{% else %}
+				<p>No orders for today</p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

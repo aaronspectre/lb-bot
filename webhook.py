@@ -15,7 +15,7 @@ class Server:
 			'phone': config.user.contact,
 			'location': config.user.location,
 			'id': config.user.id,
-			'username': config.user.username
+			'username': '@'+config.user.username
 		}
 		final = json.dumps(final)
 		config.config.logg(final, sep = True)
