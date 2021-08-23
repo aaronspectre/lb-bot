@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>LB Control Panel</title>
 	{% load static %}
+	<link rel="icon" href="{% static 'icon.png' %}">
+	{% load static %}
 	<link rel="stylesheet" href="{% static 'style.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -28,8 +30,10 @@
 						<li><a href="{% url 'dashboard' 'delivery' %}" class="sidebar-menu-item"><span class="fas fa-truck"></span> Delivery</a></li>
 						<li><a href="{% url 'dashboard' 'done' %}" class="sidebar-menu-item"><span class="fas fa-clipboard-check"></span> Done</a></li>
 						<li><a href="{% url 'dashboard' 'reject' %}" class="sidebar-menu-item"><span class="fas fa-times-circle"></span> Rejected</a></li>
+						{% if user.is_superuser %}
 						<li><a href="{% url 'cashbox' %}" class="sidebar-menu-item"><span class="fas fa-cash-register"></span> Cashbox</a></li>
 						<li><a href="" class="sidebar-menu-item"><span class="fas fa-info-circle"></span> Log</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -43,7 +47,7 @@
 						<div class="user-info text-right">
 							<a href="{% url 'dashboard' 'pending' %}"><span class="fas fa-undo-alt"></span></a>
 							<a href=""><span class="fas fa-user-circle"></span></a>
-							<a href=""><span class="fas fa-sign-out-alt"></span></a>
+							<a href="{% url 'signout' %}"><span class="fas fa-sign-out-alt"></span></a>
 						</div>
 					</div>
 					{% block main %}
@@ -99,3 +103,9 @@
 	</div>
 </body>
 </html>
+
+<script>
+	timer = setTimeout(()=>{
+		location.reload()
+	}, 1000*60)
+</script>

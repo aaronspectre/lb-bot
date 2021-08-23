@@ -10,4 +10,5 @@ urlpatterns = [
 	path('order-validation/<int:id>/<str:action>', views.orderValidation, name = 'orderValidation'),
 	path('add', views.addOrder, name = 'add'),
 	path('add/handle', views.addOrderHandle, name = 'add_handle'),
+	path('sign-out', views.signout, name = 'signout'),
 ]

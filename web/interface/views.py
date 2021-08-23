@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
@@ -31,8 +31,16 @@ def signIn(request):
 
 
 @login_required
+def signout(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('auth'))
+
+
+
+@login_required
 def dashboard(request, status):
-	orders = Order.objects.filter(status = status)
+	date = timezone.now().date()
+	orders = Order.objects.filter(status = status, date__year = date.year, date__month = date.month, date__day = date.day)
 	return render(request, 'dashboard.html', {'orders': orders})
 
 
@@ -43,7 +51,8 @@ def cashbox(request):
 	if request.user.username != 'dev':
 		return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
 
-	orders = Order.objects.all()
+	date = timezone.now().date()
+	orders = Order.objects.filter(date__year = date.year, date__month = date.month, date__day = date.day).order_by('-date')
 	return render(request, 'cashbox.html', {'orders': orders})
 
 
