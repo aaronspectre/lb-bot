@@ -111,7 +111,7 @@
 	border-radius: 40px;
 }
 
-.order-card a{
+.order-card-button{
 	padding: 1vh;
 	display: inline-block;
 	width: 45%;
@@ -121,7 +121,7 @@
 	border-radius: 10px;
 }
 
-.order-card a:hover{
+.order-card-button:hover{
 	text-decoration: none;
 	color: white;
 	opacity: .8;

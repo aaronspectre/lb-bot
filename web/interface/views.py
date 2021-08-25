@@ -46,14 +46,14 @@ def dashboard(request, status):
 
 
 @login_required
-def cashbox(request):
+def analysis(request):
 
 	if request.user.username != 'dev':
 		return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
 
 	date = timezone.now().date()
 	orders = Order.objects.filter(date__year = date.year, date__month = date.month, date__day = date.day).order_by('-date')
-	return render(request, 'cashbox.html', {'orders': orders})
+	return render(request, 'analysis.html', {'orders': orders})
 
 
 

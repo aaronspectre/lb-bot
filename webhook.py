@@ -12,7 +12,7 @@ class Server:
 		final = {
 			'order': data,
 			'cname': config.user.name,
-			'phone': config.user.contact,
+			'phone': '+'+config.user.contact,
 			'location': config.user.location,
 			'id': config.user.id,
 			'username': '@'+config.user.username
