@@ -31,7 +31,7 @@
 						<li><a href="{% url 'dashboard' 'done' %}" class="sidebar-menu-item"><span class="fas fa-clipboard-check"></span> Done</a></li>
 						<li><a href="{% url 'dashboard' 'reject' %}" class="sidebar-menu-item"><span class="fas fa-times-circle"></span> Rejected</a></li>
 						{% if user.is_superuser %}
-						<li><a href="{% url 'cashbox' %}" class="sidebar-menu-item"><span class="fas fa-cash-register"></span> Cashbox</a></li>
+						<li><a href="{% url 'cashbox' %}" class="sidebar-menu-item"><span class="fas fa-chart-bar"></span> Analysis</a></li>
 						<li><a href="" class="sidebar-menu-item"><span class="fas fa-info-circle"></span> Log</a></li>
 						{% endif %}
 					</ul>

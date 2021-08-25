@@ -48,3 +48,6 @@ config = Config()
 step = 0
 progress = str()
 busket = []
+amount = 0
+has_menu = False
+menu_message = None

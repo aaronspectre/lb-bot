@@ -112,7 +112,9 @@
 }
 
 .order-card a{
-	padding: 1vh 6vh;
+	padding: 1vh;
+	display: inline-block;
+	width: 45%;
 	text-align: center;
 	color: white;
 	text-decoration: none;
@@ -163,6 +165,10 @@
 
 .cashbox-card-pending{
 	background: #F08A5D;
+}
+
+.cashbox-card-delivery{
+	background: #00ADB5;
 }
 
 .cashbox-card-total{

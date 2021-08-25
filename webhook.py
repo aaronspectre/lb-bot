@@ -5,7 +5,7 @@ import config
 
 class Server:
 	def __init__(self):
-		self.ADDRESS = 'http://localhost:8000/bot/'
+		self.ADDRESS = 'https://lbcontrol.pythonanywhere.com/bot/'
 
 
 	def send(self, data):
@@ -20,4 +20,8 @@ class Server:
 		final = json.dumps(final)
 		config.config.logg(final, sep = True)
 
-		requests.post(self.ADDRESS, {'data': final})
+		try:
+			requests.post(self.ADDRESS, {'data': final})
+			return True
+		except:
+			return False
