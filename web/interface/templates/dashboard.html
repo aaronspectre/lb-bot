@@ -30,6 +30,7 @@
 						<li><a href="{% url 'dashboard' 'delivery' %}" class="sidebar-menu-item"><span class="fas fa-truck"></span> Delivery</a></li>
 						<li><a href="{% url 'dashboard' 'done' %}" class="sidebar-menu-item"><span class="fas fa-clipboard-check"></span> Done</a></li>
 						<li><a href="{% url 'dashboard' 'reject' %}" class="sidebar-menu-item"><span class="fas fa-times-circle"></span> Rejected</a></li>
+						<li><a href="{% url 'dashboard' 'left' %}" class="sidebar-menu-item"><span class="fas fa-exclamation-circle"></span> Left</a></li>
 						{% if user.is_superuser %}
 						<li><a href="{% url 'analysis' %}" class="sidebar-menu-item"><span class="fas fa-chart-bar"></span> Analysis</a></li>
 						<li><a href="" class="sidebar-menu-item"><span class="fas fa-info-circle"></span> Log</a></li>
@@ -68,7 +69,8 @@
 										</h6>
 										<small>id: {{order.id}}</small><br>
 										<small>{{order.customer_phone}} <h5 style="float: right;">{{order.price}} uzs</h5></small><br>
-										<small>{{order.customer_username}}</small><br><br>
+										<small>{{order.customer_username}}</small><br>
+										<small>{{order.date.date}}</small><br><br>
 										<p class="m-0">Order:</p>
 										<ul>
 											{% for item in order.order|parser %}

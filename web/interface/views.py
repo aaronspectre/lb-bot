@@ -39,6 +39,15 @@ def signout(request):
 
 @login_required
 def dashboard(request, status):
+
+	if status == 'left':
+		date = timezone.now().date()
+		orders = Order.objects.filter(status = 'pending').exclude(
+			date__year = date.year, date__month = date.month,
+			date__day = date.day
+		)
+		return render(request, 'dashboard.html', {'orders': orders})
+
 	date = timezone.now().date()
 	orders = Order.objects.filter(status = status, date__year = date.year, date__month = date.month, date__day = date.day)
 	return render(request, 'dashboard.html', {'orders': orders})

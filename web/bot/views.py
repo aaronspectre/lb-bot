@@ -8,6 +8,7 @@ import json
 @csrf_exempt
 def index(request):
 	try:
+		print(request.POST)
 		data = json.loads(request.POST['data'])
 		order = Order()
 

@@ -11,52 +11,43 @@ bot = Bot(token = config.config.TOKEN)
 dispatch = Dispatcher(bot)
 server = webhook.Server()
 
+active_users = dict()
 
 
 
 
-@dispatch.callback_query_handler(lambda c: 'taco' in c.data)
-async def reply_menu(callback):
+@dispatch.callback_query_handler(lambda c: 'corndog' in c.data)
+async def replyMenu(callback):
 	config.config.logg(callback, sep = True)
-	config.menu_message = callback.message.message_id
+	active_users[config.user.id]['menu_message'] = callback.message.message_id
+	active_users[config.user.id]['progress'] = config.config.getName(callback.message.reply_markup.inline_keyboard, callback.data)
 
 	await bot.answer_callback_query(callback.id)
-	await getSize(callback)
-
-
-
-@dispatch.callback_query_handler(lambda c: 'size' in c.data)
-async def reply_size(callback):
-	config.config.logg(callback, sep = True)
-
-	config.progress += config.config.getName(callback.message.reply_markup.inline_keyboard, callback.data)
-
-	await bot.answer_callback_query(callback.id)
-	await bot.delete_message(callback.from_user.id, callback.message.message_id)
 	await getAmount(callback)
 
 
 
 
+
 @dispatch.callback_query_handler(lambda c: 'amount' in c.data)
-async def reply_amount(callback):
+async def replyAmount(callback):
 
 	config.config.logg(callback, sep = True)
 
 	if '5' in callback.data:
 		if '-5' in callback.data:
-			config.amount -= 5
+			active_users[config.user.id]['amount'] -= 5
 		else:
-			config.amount += 5
+			active_users[config.user.id]['amount'] += 5
 	elif '1' in callback.data:
 		if '-1' in callback.data:
-			config.amount -= 1
+			active_users[config.user.id]['amount'] -= 1
 		else:
-			config.amount += 1
+			active_users[config.user.id]['amount'] += 1
 	elif 'done' in callback.data:
-		config.progress += f' x{config.amount}'
-		config.busket.append(config.progress)
-		config.progress = str()
+		active_users[config.user.id]['progress'] += f" x{active_users[config.user.id]['amount']}"
+		active_users[config.user.id]['busket'].append(active_users[config.user.id]['progress'])
+		active_users[config.user.id]['progress'] = str()
 		await bot.answer_callback_query(callback.id, 'Добавлено в корзину')
 		await bot.delete_message(callback.from_user.id, callback.message.message_id)
 		await getMenu(callback)
@@ -65,12 +56,12 @@ async def reply_amount(callback):
 		pass
 
 
-
 	await bot.answer_callback_query(callback.id)
+	config.config.logg('Default', sep = True)
 	keyboard = types.InlineKeyboardMarkup(row_width = 5)
 	keyboard.insert(types.InlineKeyboardButton('-5', callback_data = '-5_amount'))
 	keyboard.insert(types.InlineKeyboardButton('-1', callback_data = '-1_amount'))
-	keyboard.insert(types.InlineKeyboardButton(config.amount, callback_data = 'final_amount'))
+	keyboard.insert(types.InlineKeyboardButton(active_users[config.user.id]['amount'], callback_data = 'final_amount'))
 	keyboard.insert(types.InlineKeyboardButton('+1', callback_data = '+1_amount'))
 	keyboard.insert(types.InlineKeyboardButton('+5', callback_data = '+5_amount'))
 	keyboard.insert(types.InlineKeyboardButton('🆗', callback_data = 'done_amount'))
@@ -80,10 +71,10 @@ async def reply_amount(callback):
 
 @dispatch.callback_query_handler(lambda c: 'busket' in c.data)
 async def showBusket(callback):
-	config.config.logg(config.busket, sep = True)
+	config.config.logg(active_users[config.user.id]['busket'], sep = True)
 	await bot.answer_callback_query(callback.id)
 
-	order_list = '\n'.join([f'\t{item}' for item in config.busket])
+	order_list = '\n'.join([f'\t{item}' for item in active_users[config.user.id]['busket']])
 	keyboard = types.InlineKeyboardMarkup(row_width = 1)
 	keyboard.insert(types.InlineKeyboardButton('Очистить корзину ❌', callback_data = 'clear'))
 	keyboard.insert(types.InlineKeyboardButton('Назад ⬅️', callback_data = 'goback'))
@@ -101,9 +92,9 @@ async def goBack(callback):
 
 
 @dispatch.callback_query_handler(lambda c: 'clear' in c.data)
-async def goBack(callback):
+async def clearBusket(callback):
 	config.config.logg(callback, sep = True)
-	config.busket.clear()
+	active_users[config.user.id]['busket'].clear()
 
 	await bot.delete_message(callback.from_user.id, callback.message.message_id)
 	await getMenu(callback)
@@ -112,9 +103,9 @@ async def goBack(callback):
 
 @dispatch.callback_query_handler(lambda c: 'ready' in c.data)
 async def ready(callback):
-	config.config.logg(config.busket)
+	config.config.logg(active_users[config.user.id]['busket'])
 
-	order_list = '\n'.join([f'\t{item}' for item in config.busket])
+	order_list = '\n'.join([f'\t{item}' for item in active_users[config.user.id]['busket']])
 	# keyboard = types.InlineKeyboardMarkup().insert(types.InlineKeyboardButton('Order 🚚', callback_data = 'order_done'))
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True)
 	keyboard.add(types.KeyboardButton('Отправить 📍', request_location = True))
@@ -126,54 +117,49 @@ async def ready(callback):
 
 
 
-async def order_done(message):
+async def orderDone(message):
 
-	if server.send(config.busket):
-		order_list = '\n'.join([f'\t{item}' for item in config.busket])
+	if server.send(active_users[config.user.id]['busket']):
+		order_list = '\n'.join([f'\t{item}' for item in active_users[config.user.id]['busket']])
 		bill_of_order_text = f"""Чек\n\nВаш заказ:\n{order_list}\n\nОбщая цена: 31,823.92$\nid: {config.user.chat_id}\n\nBon Appétit!"""
 		await message.answer(bill_of_order_text, reply_markup = types.ReplyKeyboardRemove())
+		active_users[config.user.id]['has_menu'] = False
+		active_users[config.user.id]['busket'].clear()
 	else:
 		await message.answer('Что-то пошло не так 🙁, Пожалуйста повторите позже')
 
 
 
 
-async def getMenu(message):
-	config.step = 2
-	keyboard = types.InlineKeyboardMarkup(row_width = 2)
-	keyboard.insert(types.InlineKeyboardButton('Taco 🌮', callback_data = 'tacosimple'))
-	keyboard.insert(types.InlineKeyboardButton('Taco with 🧀', callback_data = 'tacocheese'))
-	keyboard.insert(types.InlineKeyboardButton('Корзина 🛒', callback_data = 'busket'))
 
-	if len(config.busket) != 0:
+
+async def getMenu(message):
+	keyboard = types.InlineKeyboardMarkup(row_width = 2)
+	keyboard.insert(types.InlineKeyboardButton('Corndog 🥩', callback_data = 'corndogsimp'))
+	keyboard.insert(types.InlineKeyboardButton('Corndog 🍗', callback_data = 'corndogchick'))
+	keyboard.insert(types.InlineKeyboardButton('Corndog 🥩 with 🧀', callback_data = 'corndogsimp_ch'))
+	keyboard.insert(types.InlineKeyboardButton('Corndog 🍗 with 🧀', callback_data = 'corndogchick_ch'))
+	keyboard.add(types.InlineKeyboardButton('Корзина 🛒', callback_data = 'busket'))
+
+	if len(active_users[config.user.id]['busket']) != 0:
 		keyboard.insert(types.InlineKeyboardButton('Готово ✅', callback_data = 'ready'))
 
-	if config.has_menu:
-		await bot.edit_message_reply_markup(message.from_user.id, config.menu_message, reply_markup = keyboard)
-	else:
-		await bot.send_message(config.user.chat_id, 'Ок', reply_markup = types.ReplyKeyboardRemove())
-		config.has_menu = True
-		await bot.send_message(config.user.chat_id, 'Меню', reply_markup = keyboard)
+	try:
+		if active_users[config.user.id]['has_menu']:
+			await bot.edit_message_reply_markup(message.from_user.id, active_users[config.user.id]['menu_message'], reply_markup = keyboard)
+		else:
+			await bot.send_message(active_users[config.user.id]['chat_id'], 'Ок', reply_markup = types.ReplyKeyboardRemove())
+			active_users[config.user.id]['has_menu'] = True
+			await bot.send_message(active_users[config.user.id]['chat_id'], 'Меню', reply_markup = keyboard)
+	except Exception as e:
+		config.config.logg(e, 1, True)
 
-
-
-
-async def getSize(callback):
-	product = config.config.getName(callback.message.reply_markup.inline_keyboard, callback.data)
-	config.step = 3
-	keyboard = types.InlineKeyboardMarkup(row_width = 2)
-	keyboard.insert(types.InlineKeyboardButton(f'{product} Big', callback_data = 'big_size'))
-	keyboard.insert(types.InlineKeyboardButton(f'{product} Medium', callback_data = 'mid_size'))
-	keyboard.insert(types.InlineKeyboardButton(f'{product} Small', callback_data = 'small_size'))
-
-	await bot.send_message(callback.from_user.id, 'Please Choose Size', reply_markup = keyboard)
 
 
 
 
 async def getAmount(callback):
-	config.step = 4
-	config.amount = 0
+	active_users[config.user.id]['amount'] = 0
 	keyboard = types.InlineKeyboardMarkup(row_width = 5)
 	keyboard.insert(types.InlineKeyboardButton('-5', callback_data = '-5_amount'))
 	keyboard.insert(types.InlineKeyboardButton('-1', callback_data = '-1_amount'))
@@ -181,28 +167,35 @@ async def getAmount(callback):
 	keyboard.insert(types.InlineKeyboardButton('+1', callback_data = '+1_amount'))
 	keyboard.insert(types.InlineKeyboardButton('+5', callback_data = '+5_amount'))
 
-	await bot.send_message(callback.from_user.id, f'Please choose amount for {config.progress}', reply_markup = keyboard)
+	await bot.send_message(callback.from_user.id,
+		f"Пожалуйста выберите количество {active_users[config.user.id]['progress']}",
+		reply_markup = keyboard
+	)
 
 
 
 
 
-@dispatch.message_handler(commands = ['start', 'help'])
+@dispatch.message_handler(commands = ['start', 'help', 'restart'])
 async def greet(message):
 	config.config.logg(message, sep = True)
 
-	if config.user.username is None:
-		config.user.id = message['from'].id
-		config.user.username = message['from'].username
-		config.user.name = message['from'].first_name
-		config.user.chat_id = message['chat'].id
+	if config.user.id == -1:
+		config.user.buildUser(message)
 
-	config.step = 1
+	active_users[message['from']['id']] = {
+		'has_menu': False,
+		'amount': 0,
+		'progress': str(),
+		'busket': list(),
+		'menu_message': None,
+		'chat_id': message['from']['id']
+	}
 
 	button = types.KeyboardButton('Отправить ☎️', request_contact = True)
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True).add(button)
 
-	await bot.send_sticker(chat_id = message.chat.id, sticker = 'CAACAgIAAxkBAANMYRdtdnDsfvy_bUJ5Y5P25J1DvfcAAkACAALKAwYLErYLnAsKDVUgBA')
+	await bot.send_sticker(chat_id = message.chat.id, sticker = 'CAACAgIAAxkBAAIFNWEwZLjnx4jwfiBI2RNt1_Fm1G8zAAJnDgACFdNxSGikxIOzFJ0VIAQ')
 	await message.answer('🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона',
 		reply_markup = keyboard)
 
@@ -226,7 +219,7 @@ async def receive_contact(message):
 	config.user.location["latitude"] = message.location['latitude']
 	config.user.location["longitude"] = message.location['longitude']
 
-	await order_done(message)
+	await orderDone(message)
 
 
 
@@ -236,16 +229,21 @@ async def receive_contact(message):
 async def answer_validator(message):
 	config.config.logg(message, sep = True)
 
-	if config.step == 1:
-		await greet(message)
-	elif config.step == 2:
-		await getMenu(message)
-	elif config.step == 3:
-		await getSize(message)
-	elif config.step == 4:
-		await getAmount(message)
-	else:
-		await greet(message)
+	active_users[config.user.id]['has_menu'] = False
+	active_users[config.user.id]['progress'] = str()
+
+	await getMenu(message)
+
+	# if config.step == 1:
+	# 	await greet(message)
+	# elif config.step == 2:
+	# 	await getMenu(message)
+	# elif config.step == 3:
+	# 	await getAmount(message)
+	# elif config.step == 4:
+	# 	await ready(message)
+	# else:
+	# 	await greet(message)
 
 
 

@@ -1,6 +1,6 @@
 class Config:
 	def __init__(self):
-		self.TOKEN = '1912018363:AAHN2Vd__wMe-t5YoKH5XqDBqN6pK-1W9JA'
+		self.TOKEN = '1978222621:AAEzW9QW1mPOvww8tnlBS9-MtVLyEGuZqQo'
 		self.SERVER_TOKEN = ''
 
 
@@ -34,20 +34,38 @@ class Config:
 
 class UserData:
 	def __init__(self):
-		self.id = 0
-		self.username = None
-		self.contact = None
-		self.location = {}
-		self.name = None
-		self.chat_id = None
+		self.id = -1
+		self.username = str()
+		self.contact = str()
+		self.location = dict()
+		self.name = str()
+		self.chat_id = str()
+
+
+
+	def buildUser(self, message):
+		self.id = message['from'].id
+		self.username = message['from'].username
+		self.name = message['from'].first_name
+		self.chat_id = message['chat'].id
+
+		if self.username is None:
+			self.username = 'empty'
+
+
+	def buildOrder(self, data):
+		final = {
+			'order': data,
+			'cname': self.name,
+			'phone': '+'+self.contact,
+			'location': self.location,
+			'id': self.id,
+			'username': '@'+self.username
+		}
+
+		return final
 
 
 
 user = UserData()
 config = Config()
-step = 0
-progress = str()
-busket = []
-amount = 0
-has_menu = False
-menu_message = None
