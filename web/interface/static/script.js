@@ -11,8 +11,8 @@ console.log(action_button)
 
 
 price_list = {
-	'Taco': 9000,
-	'Taco with Cheese': 12000,
+	'Corndog': 9000,
+	'Corndog with Cheese': 12000,
 }
 
 function add_order(){

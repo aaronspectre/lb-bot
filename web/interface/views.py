@@ -62,6 +62,10 @@ def analysis(request):
 
 	date = timezone.now().date()
 	orders = Order.objects.filter(date__year = date.year, date__month = date.month, date__day = date.day).order_by('-date')
+
+	orderSet = Order.objects.filter(date__year = date.year, date__month = date.month, date__day__in = (date.day,date.day-1)).order_by('-date')
+	makeGraphData(orderSet)
+
 	return render(request, 'analysis.html', {'orders': orders})
 
 
@@ -115,3 +119,13 @@ def addOrderHandle(request):
 
 
 	return HttpResponseRedirect(reverse('dashboard', args = ('pending',)))
+
+
+
+
+
+def makeGraphData(orderSet):
+	orderAmount = orderSet.count()
+	orderSum = int()
+	for order in orderSet:
+		orderSum += order.price

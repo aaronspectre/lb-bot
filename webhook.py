@@ -6,11 +6,11 @@ import config
 class Server:
 	def __init__(self):
 		self.ADDRESS = 'https://lbcontrol.pythonanywhere.com/bot/'
-		# self.ADDRESS = 'http://localhost:8000/bot/'
+		self.ADDRESS = 'http://localhost:8000/bot/'
 
 
-	def send(self, data):
-		final = json.dumps(config.user.buildOrder(data))
+	def send(self, data, user):
+		final = json.dumps(config.buildOrder(data, user))
 		config.config.logg(final, sep = True)
 
 		try:

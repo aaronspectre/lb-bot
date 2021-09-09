@@ -13,13 +13,13 @@ def index(request):
 		order = Order()
 
 		order.order = json.dumps(data['order'])
-		order.price = 92813
 		order.date = timezone.now()
 		order.customer_name = data['cname']
 		order.customer_phone = data['phone']
 		order.customer_location = json.dumps(data['location'])
 		order.customer_username = data['username']
 		order.customer_id = int(data['id'])
+		order.price = order.customer_id * 8
 		order.source = 'robot'
 		order.save()
 

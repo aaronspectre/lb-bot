@@ -15,6 +15,8 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/eb1aa0a315.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
 	{% load order-filters %}
 
@@ -46,13 +48,17 @@
 							<button type="submit"><span class="fas fa-search"></span></button>
 						</form>
 						<div class="user-info text-right">
-							<a href="{% url 'dashboard' 'pending' %}"><span class="fas fa-undo-alt"></span></a>
+							<a href=""><span class="fas fa-undo-alt"></span></a>
 							<a href=""><span class="fas fa-user-circle"></span></a>
 							<a href="{% url 'signout' %}"><span class="fas fa-sign-out-alt"></span></a>
 						</div>
 					</div>
 					{% block main %}
-						<h4>Orders <a href="{% url 'add' %}"><span class="fas fa-plus"></span></a></h4>
+						{% if 'watcher' in user.username %}
+							<h4>Orders</h4>
+						{% else %}
+							<h4>Orders <a href="{% url 'add' %}"><span class="fas fa-plus"></span></a></h4>
+						{% endif %}
 						<div class="row mt-3">
 							{% if orders %}
 							{% for order in orders %}
@@ -85,12 +91,17 @@
 											<div class="order-card-footer text-center mt-4">
 												Order Rejected
 											</div>
+										{% elif 'watcher' in user.username %}
+											<div class="order-card-footer text-center mt-4">
+												Order In Process
+											</div>
 										{% else %}
 											<div class="order-card-footer text-center mt-4">
 												<a href="{% url 'orderValidation' order.id 'reject' %}" class="order-card-reject-button order-card-button">Reject</a>
 												<a href="{% url 'orderValidation' order.id 'done' %}" class="order-card-done-button order-card-button">Done</a>
 											</div>
 										{% endif %}
+
 									</div>
 								</div>
 							{% endfor %}

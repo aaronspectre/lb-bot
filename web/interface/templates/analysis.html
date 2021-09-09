@@ -1,13 +1,95 @@
 {% extends 'dashboard.html' %}
 {% load order-filters %}
 {% block main %}
+	<h4>Analysis for {% now "jS F" %}</h4>
+	<div class="row mt-4 mb-4">
+		<div class="col-md-3">
+			<div class="analysis_card">
+				<div class="analysis_card_head text-center">
+					<h2 class="fas fa-shopping-bag"></h2>
+					<p>Total orders</p>
+				</div>
+				<div class="analysis_card_body text-center mt-5">
+					<h4>128312</h4>
+				</div>
+				<div class="analysis_card_foot text-center mt-4">
+					<p>29312 done</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="analysis_card">
+				<div class="analysis_card_head text-center">
+					<h2 class="fas fa-dollar-sign"></h2>
+					<p>Total income</p>
+				</div>
+				<div class="analysis_card_body text-center mt-5">
+					<h4>128312 uzs</h4>
+				</div>
+				<div class="analysis_card_foot text-center mt-4">
+					<p>218392 uzs profit</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="analysis_card">
+				<div class="analysis_card_head text-center">
+					<h2 class="fas fa-cash-register"></h2>
+					<p>Total for cashbox</p>
+				</div>
+				<div class="analysis_card_body text-center mt-5">
+					<h4>128312 uzs</h4>
+				</div>
+				<div class="analysis_card_foot text-center mt-4">
+					<p>29312 orders</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="analysis_card">
+				<div class="analysis_card_head text-center">
+					<h2 class="fas fa-robot"></h2>
+					<p>Total for bot</p>
+				</div>
+				<div class="analysis_card_body text-center mt-5">
+					<h4>128312 uzs</h4>
+				</div>
+				<div class="analysis_card_foot text-center mt-4">
+					<p>29312 orders</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h4>Graphs</h4>
+	<div class="row mt-4 mb-4">
+		<div class="col-md-6">
+			<div id="dailyOrdersChart"></div>
+		</div>
+		<div class="col-md-6">
+			<div id="dailyPriceChart"></div>
+		</div>
+		<div class="col-md-6">
+			<div id="dailyBotChart"></div>
+		</div>
+		<div class="col-md-6">
+			<div id="dailyCashboxChart"></div>
+		</div>
+	</div>
 	<h4>Cashbox</h4>
 	<div class="row mt-4">
 		<div class="col-md-12">
 			<div class="cashbox-card cashbox-card-total">
-					<p style="float: right;">{% now "jS F" %}</p>
-					<h5>{{ orders|summ }} uzs - Total</h5>
-				</div>
+				<p style="float: right;">{% now "jS F" %}</p>
+				<h5>{{ orders|summ }} uzs - Total</h5><br>
+				<h6>Filter</h6>
+				<select name="analysisfilter" id="analysisfilter" class="form-control w-25" onchange="filter_analyse()">
+					<option value="All">All</option>
+					<option value="Pending">Pending</option>
+					<option value="Delivery">Delivery</option>
+					<option value="Done">Done</option>
+					<option value="Reject">Reject</option>
+				</select>
+			</div>
 			{% if orders %}
 			{% for order in orders %}
 				<div class="cashbox-card cashbox-card-{{order.status}}">
@@ -21,4 +103,10 @@
 			{% endif %}
 		</div>
 	</div>
+
+	{% load static %}
+	<script src="{% static 'filters.js' %}"></script>
+	<script>
+		drawGraph()
+	</script>
 {% endblock %}

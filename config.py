@@ -32,40 +32,33 @@ class Config:
 
 
 
-class UserData:
-	def __init__(self):
-		self.id = -1
-		self.username = str()
-		self.contact = str()
-		self.location = dict()
-		self.name = str()
-		self.chat_id = str()
+
+def buildOrder(data, user):
+	final = {
+		'order': data,
+		'cname': user['name'],
+		'phone': '+'+user['contact'],
+		'location': user['location'],
+		'id': user['id'],
+		'username': '@'+user['username']
+	}
+
+	return final
 
 
+def buildUser(message):
+	user = dict()
+	user['id'] = message['from'].id
+	user['username'] = message['from'].username
+	user['name'] = message['from'].first_name
+	user['chat_id'] = message['chat'].id
+	user['location'] = dict()
+	user['contact'] = str()
 
-	def buildUser(self, message):
-		self.id = message['from'].id
-		self.username = message['from'].username
-		self.name = message['from'].first_name
-		self.chat_id = message['chat'].id
+	if user['username'] is None:
+		user['username'] = 'empty'
 
-		if self.username is None:
-			self.username = 'empty'
-
-
-	def buildOrder(self, data):
-		final = {
-			'order': data,
-			'cname': self.name,
-			'phone': '+'+self.contact,
-			'location': self.location,
-			'id': self.id,
-			'username': '@'+self.username
-		}
-
-		return final
+	return user
 
 
-
-user = UserData()
 config = Config()

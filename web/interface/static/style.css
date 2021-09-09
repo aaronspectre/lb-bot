@@ -174,3 +174,17 @@
 .cashbox-card-total{
 	background: #2B2E4A;
 }
+
+.analysis_card{
+	width: 100%;
+	height: 100%;
+	background: #2B2E4A;
+	color: white;
+	border-radius: 20px;
+	padding: 5vh 2vh 2vh 2vh;
+}
+
+#dailyChart{
+	width: 100%;
+	height: 40vh;
+}

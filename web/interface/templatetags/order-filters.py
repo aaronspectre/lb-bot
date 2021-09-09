@@ -35,4 +35,3 @@ def summ(orders):
 			total+=order.price
 
 	return total
-
