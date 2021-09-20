@@ -16,6 +16,7 @@ class Server:
 		try:
 			response = requests.post(self.ADDRESS, {'data': final})
 			if response.text == 'Got':
+				config.config.logg(response.text, sep = True)
 				return True
 			config.config.logg(response.text, sep = True)
 			return False

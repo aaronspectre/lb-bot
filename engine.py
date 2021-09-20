@@ -56,7 +56,6 @@ async def replyAmount(callback):
 
 
 	await bot.answer_callback_query(callback.id)
-	config.config.logg('Default', sep = True)
 	keyboard = types.InlineKeyboardMarkup(row_width = 5)
 	keyboard.insert(types.InlineKeyboardButton('-5', callback_data = '-5_amount'))
 	keyboard.insert(types.InlineKeyboardButton('-1', callback_data = '-1_amount'))
@@ -243,6 +242,7 @@ async def answer_validator(message):
 	active_users[message['from']['id']] = {
 		'has_menu': False,
 		'amount': 0,
+		'price': 0,
 		'progress': str(),
 		'busket': list(),
 		'menu_message': None,

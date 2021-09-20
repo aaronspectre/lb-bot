@@ -1,18 +1,26 @@
+import datetime
+
+
 class Config:
 	def __init__(self):
 		self.TOKEN = '1978222621:AAEzW9QW1mPOvww8tnlBS9-MtVLyEGuZqQo'
 		self.SERVER_TOKEN = ''
+		self.log_file = open('log.txt', 'a')
 
 
 	def logg(self, message, level = 3, sep = False):
 		if sep:
 			print('\n\n')
+			self.log_file.write('\n\n')
 
 		if level == 1:
+			self.log_file.write(f'[!] {message} || {datetime.datetime.now()}')
 			print(f'[!] {message}')
 		elif level == 2:
+			self.log_file.write(f'[#] {message} || {datetime.datetime.now()}')
 			print(f'[#] {message}')
 		else:
+			self.log_file.write(f'[+] {message} || {datetime.datetime.now()}')
 			print(f'[+] {message}')
 
 
