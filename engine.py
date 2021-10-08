@@ -105,7 +105,6 @@ async def ready(callback):
 	config.config.logg(active_users[callback['from'].id]['busket'])
 
 	order_list = '\n'.join([f'\t{item}' for item in active_users[callback['from'].id]['busket']])
-	# keyboard = types.InlineKeyboardMarkup().insert(types.InlineKeyboardButton('Order 🚚', callback_data = 'order_done'))
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True)
 	keyboard.add(types.KeyboardButton('Отправить 📍', request_location = True))
 	await bot.send_message(
@@ -126,8 +125,10 @@ async def orderDone(message):
 		await message.answer(bill_of_order_text, reply_markup = types.ReplyKeyboardRemove())
 		active_users[message['from'].id]['has_menu'] = False
 		active_users[message['from'].id]['busket'].clear()
+		await bot.delete_message(message['from'].id, active_users[message['from'].id]['menu_message'])
 	else:
 		await message.answer('Что-то пошло не так 🙁, Пожалуйста повторите позже')
+		await bot.delete_message(message['from'].id, active_users[message['from'].id]['menu_message'])
 
 
 
