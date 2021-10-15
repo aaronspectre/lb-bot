@@ -6,7 +6,7 @@ import config
 class Server:
 	def __init__(self):
 		self.ADDRESS = 'https://lbcontrol.pythonanywhere.com/bot/'
-		self.ADDRESS = 'http://localhost:8000/bot/'
+		# self.ADDRESS = 'http://localhost:8000/bot/'
 
 
 	def send(self, data, user):
