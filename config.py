@@ -20,7 +20,7 @@ class Config:
 			self.log_file.write(f'[#] {message} || {datetime.datetime.now()}')
 			print(f'[#] {message}')
 		else:
-			self.log_file.write(f'[+] {message} || {datetime.datetime.now()}')
+			# self.log_file.write(f'[+] {message} || {datetime.datetime.now()}')
 			print(f'[+] {message}')
 
 

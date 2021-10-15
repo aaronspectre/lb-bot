@@ -1,115 +1,114 @@
+﻿
 
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[!] {message}[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[+] {message}
 
-[!] {message}
 
-[+] {"message_id": 325, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150654, "text": "/restart", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]}
 
-[+] {"message_id": 328, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150666, "reply_to_message": {"message_id": 327, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150663, "text": "🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона"}, "contact": {"phone_number": "998998871355", "first_name": "Bilbo", "user_id": 1247839532}}
 
-[+] {"id": "5359429981930718945", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 330, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150667, "text": "Меню", "reply_markup": {"inline_keyboard": [[{"text": "Corndog 🥩", "callback_data": "corndogsimp"}, {"text": "Corndog 🍗", "callback_data": "corndogchick"}], [{"text": "Corndog 🥩 with 🧀", "callback_data": "corndogsimp_ch"}, {"text": "Corndog 🍗 with 🧀", "callback_data": "corndogchick_ch"}], [{"text": "Корзина 🛒", "callback_data": "busket"}]]}}, "chat_instance": "6976663355331338887", "data": "corndogchick_ch"}
 
-[+] {"id": "5359429984461417358", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 331, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150669, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "0", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}]]}}, "chat_instance": "6976663355331338887", "data": "+5_amount"}
 
-[+] {"id": "5359429984584422549", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 331, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150669, "edit_date": 1632150671, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "5", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "6976663355331338887", "data": "+5_amount"}
 
-[+] {"id": "5359429981605465312", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 331, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150669, "edit_date": 1632150673, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "10", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "6976663355331338887", "data": "done_amount"}[+] ['Corndog 🍗 with 🧀 x10']
 
-[+] {"message_id": 333, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150682, "reply_to_message": {"message_id": 332, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150678, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x10\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317896, "longitude": 69.23791}}
 
-[+] {"message_id": 333, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150682, "reply_to_message": {"message_id": 332, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150678, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x10\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317896, "longitude": 69.23791}}
 
-[+] {"order": ["Corndog \ud83c\udf57 with \ud83e\uddc0 x10"], "cname": "Bilbo", "phone": "+998998871355", "location": {"latitude": 41.317896, "longitude": 69.23791}, "id": 1247839532, "username": "@avangard_team"}
 
-[+] {"message_id": 335, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150857, "text": "/restart", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]} || 2021-09-20 11:14:17.018456
 
-[+] {"message_id": 338, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150859, "reply_to_message": {"message_id": 337, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150857, "text": "🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона"}, "contact": {"phone_number": "998998871355", "first_name": "Bilbo", "user_id": 1247839532}} || 2021-09-20 11:14:19.020727
 
-[+] {"id": "5359429982120476206", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 340, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150860, "text": "Меню", "reply_markup": {"inline_keyboard": [[{"text": "Corndog 🥩", "callback_data": "corndogsimp"}, {"text": "Corndog 🍗", "callback_data": "corndogchick"}], [{"text": "Corndog 🥩 with 🧀", "callback_data": "corndogsimp_ch"}, {"text": "Corndog 🍗 with 🧀", "callback_data": "corndogchick_ch"}], [{"text": "Корзина 🛒", "callback_data": "busket"}]]}}, "chat_instance": "6976663355331338887", "data": "corndogchick_ch"} || 2021-09-20 11:14:20.730843
 
-[+] {"id": "5359429983331692930", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 341, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150861, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "0", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}]]}}, "chat_instance": "6976663355331338887", "data": "+5_amount"} || 2021-09-20 11:14:22.291881
 
-[+] {"id": "5359429980621233322", "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "message": {"message_id": 341, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150861, "edit_date": 1632150863, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "5", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "6976663355331338887", "data": "done_amount"} || 2021-09-20 11:14:23.624191[+] ['Corndog 🍗 with 🧀 x5'] || 2021-09-20 11:14:28.340287
 
-[+] {"message_id": 343, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150872, "reply_to_message": {"message_id": 342, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150869, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317888, "longitude": 69.237882}} || 2021-09-20 11:14:32.077465
 
-[+] {"message_id": 343, "from": {"id": 1247839532, "is_bot": false, "first_name": "Bilbo", "username": "avangard_team", "language_code": "en"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150872, "reply_to_message": {"message_id": 342, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 1247839532, "first_name": "Bilbo", "username": "avangard_team", "type": "private"}, "date": 1632150869, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317888, "longitude": 69.237882}} || 2021-09-20 11:14:32.078243
 
-[+] {"order": ["Corndog \ud83c\udf57 with \ud83e\uddc0 x5"], "cname": "Bilbo", "phone": "+998998871355", "location": {"latitude": 41.317888, "longitude": 69.237882}, "id": 1247839532, "username": "@avangard_team"} || 2021-09-20 11:14:32.078695
 
-[+] {"message_id": 346, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702984, "text": "/restart", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]} || 2021-10-08 10:23:04.893185
 
-[+] {"message_id": 349, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702991, "reply_to_message": {"message_id": 348, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702985, "text": "🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона"}, "contact": {"phone_number": "998983147766", "first_name": "🚁", "user_id": 710810997}} || 2021-10-08 10:23:11.773549
 
-[+] {"id": "3052909989947059171", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 351, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702992, "text": "Меню", "reply_markup": {"inline_keyboard": [[{"text": "Corndog 🥩", "callback_data": "corndogsimp"}, {"text": "Corndog 🍗", "callback_data": "corndogchick"}], [{"text": "Corndog 🥩 with 🧀", "callback_data": "corndogsimp_ch"}, {"text": "Corndog 🍗 with 🧀", "callback_data": "corndogchick_ch"}], [{"text": "Корзина 🛒", "callback_data": "busket"}]]}}, "chat_instance": "-3238165720679785220", "data": "corndogchick_ch"} || 2021-10-08 10:23:16.312964
 
-[+] {"id": "3052909987880309723", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 352, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702996, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "0", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "+5_amount"} || 2021-10-08 10:23:18.391748
 
-[+] {"id": "3052909988754775403", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 352, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633702996, "edit_date": 1633702998, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "5", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "done_amount"} || 2021-10-08 10:23:21.283805[+] ['Corndog 🍗 with 🧀 x5'] || 2021-10-08 10:23:23.150601
 
-[+] {"message_id": 354, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703013, "reply_to_message": {"message_id": 353, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703003, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:23:33.281588
 
-[+] {"message_id": 354, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703013, "reply_to_message": {"message_id": 353, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703003, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:23:33.282339
 
-[+] {"order": ["Corndog \ud83c\udf57 with \ud83e\uddc0 x5"], "cname": "\ud83d\ude81", "phone": "+998983147766", "location": {"latitude": 41.317909, "longitude": 69.237871}, "id": 710810997, "username": "@cak2s"} || 2021-10-08 10:23:33.282800
 
-[!] HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /bot/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f2195bc8250>: Failed to establish a new connection: [Errno 111] Connection refused')) || 2021-10-08 10:23:33.288567
 
-[+] {"message_id": 356, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703062, "text": "/restart", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]} || 2021-10-08 10:24:22.321289
 
-[+] {"message_id": 359, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703066, "text": "/start", "entities": [{"type": "bot_command", "offset": 0, "length": 6}]} || 2021-10-08 10:24:27.079153
 
-[+] {"message_id": 362, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703068, "reply_to_message": {"message_id": 361, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703067, "text": "🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона"}, "contact": {"phone_number": "998983147766", "first_name": "🚁", "user_id": 710810997}} || 2021-10-08 10:24:29.092960
 
-[+] {"id": "3052909986077292791", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 364, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703069, "text": "Меню", "reply_markup": {"inline_keyboard": [[{"text": "Corndog 🥩", "callback_data": "corndogsimp"}, {"text": "Corndog 🍗", "callback_data": "corndogchick"}], [{"text": "Corndog 🥩 with 🧀", "callback_data": "corndogsimp_ch"}, {"text": "Corndog 🍗 with 🧀", "callback_data": "corndogchick_ch"}], [{"text": "Корзина 🛒", "callback_data": "busket"}]]}}, "chat_instance": "-3238165720679785220", "data": "corndogsimp_ch"} || 2021-10-08 10:24:30.832202
 
-[+] {"id": "3052909990019141577", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 365, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703071, "text": "Пожалуйста выберите количество Corndog 🥩 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "0", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "+5_amount"} || 2021-10-08 10:24:32.095728
 
-[+] {"id": "3052909989252965415", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 365, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703071, "edit_date": 1633703072, "text": "Пожалуйста выберите количество Corndog 🥩 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "5", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "done_amount"} || 2021-10-08 10:24:33.320302[+] ['Corndog 🥩 with 🧀 x5'] || 2021-10-08 10:24:34.835683
 
-[+] {"message_id": 367, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703077, "reply_to_message": {"message_id": 366, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703074, "text": "Ваш заказ:\n\n Corndog 🥩 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:24:37.968236
 
-[+] {"message_id": 367, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703077, "reply_to_message": {"message_id": 366, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703074, "text": "Ваш заказ:\n\n Corndog 🥩 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:24:37.968994
 
-[+] {"order": ["Corndog \ud83e\udd69 with \ud83e\uddc0 x5"], "cname": "\ud83d\ude81", "phone": "+998983147766", "location": {"latitude": 41.317909, "longitude": 69.237871}, "id": 710810997, "username": "@cak2s"} || 2021-10-08 10:24:37.969471
 
-[!] HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /bot/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f2eaac55130>: Failed to establish a new connection: [Errno 111] Connection refused')) || 2021-10-08 10:24:37.975425
 
-[+] {"message_id": 369, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703165, "text": "/restart", "entities": [{"type": "bot_command", "offset": 0, "length": 8}]} || 2021-10-08 10:26:05.885295
 
-[+] {"message_id": 372, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703169, "reply_to_message": {"message_id": 371, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703166, "text": "🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона"}, "contact": {"phone_number": "998983147766", "first_name": "🚁", "user_id": 710810997}} || 2021-10-08 10:26:09.342671
 
-[+] {"id": "3052909986023016520", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 374, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703169, "text": "Меню", "reply_markup": {"inline_keyboard": [[{"text": "Corndog 🥩", "callback_data": "corndogsimp"}, {"text": "Corndog 🍗", "callback_data": "corndogchick"}], [{"text": "Corndog 🥩 with 🧀", "callback_data": "corndogsimp_ch"}, {"text": "Corndog 🍗 with 🧀", "callback_data": "corndogchick_ch"}], [{"text": "Корзина 🛒", "callback_data": "busket"}]]}}, "chat_instance": "-3238165720679785220", "data": "corndogchick_ch"} || 2021-10-08 10:26:11.027420
 
-[+] {"id": "3052909987889886984", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 375, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703171, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "0", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "+5_amount"} || 2021-10-08 10:26:12.288473
 
-[+] {"id": "3052909989443381058", "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "message": {"message_id": 375, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703171, "edit_date": 1633703172, "text": "Пожалуйста выберите количество Corndog 🍗 with 🧀", "reply_markup": {"inline_keyboard": [[{"text": "-5", "callback_data": "-5_amount"}, {"text": "-1", "callback_data": "-1_amount"}, {"text": "5", "callback_data": "final_amount"}, {"text": "+1", "callback_data": "+1_amount"}, {"text": "+5", "callback_data": "+5_amount"}], [{"text": "🆗", "callback_data": "done_amount"}]]}}, "chat_instance": "-3238165720679785220", "data": "done_amount"} || 2021-10-08 10:26:13.490958[+] ['Corndog 🍗 with 🧀 x5'] || 2021-10-08 10:26:14.976638
 
-[+] {"message_id": 377, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703177, "reply_to_message": {"message_id": 376, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703175, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:26:17.819319
 
-[+] {"message_id": 377, "from": {"id": 710810997, "is_bot": false, "first_name": "🚁", "username": "cak2s", "language_code": "en"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703177, "reply_to_message": {"message_id": 376, "from": {"id": 1978222621, "is_bot": true, "first_name": "CornStar | Delivery", "username": "cornstar_bot"}, "chat": {"id": 710810997, "first_name": "🚁", "username": "cak2s", "type": "private"}, "date": 1633703175, "text": "Ваш заказ:\n\n Corndog 🍗 with 🧀 x5\n\nПожалуйста отправьте нам вашe местоположение"}, "location": {"latitude": 41.317909, "longitude": 69.237871}} || 2021-10-08 10:26:17.820179
 
-[+] {"order": ["Corndog \ud83c\udf57 with \ud83e\uddc0 x5"], "cname": "\ud83d\ude81", "phone": "+998983147766", "location": {"latitude": 41.317909, "longitude": 69.237871}, "id": 710810997, "username": "@cak2s"} || 2021-10-08 10:26:17.820651
 
-[!] HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /bot/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f094ee4a4f0>: Failed to establish a new connection: [Errno 111] Connection refused')) || 2021-10-08 10:26:17.826480
+
+
+
+
+
+
+
+
+
+
+
+
+
+[!] 'Message' object has no attribute 'id' || 2021-10-15 21:13:40.040547
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

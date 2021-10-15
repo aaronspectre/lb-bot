@@ -205,8 +205,8 @@ async def greet(message):
 	button = types.KeyboardButton('Отправить ☎️', request_contact = True)
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True).add(button)
 
-	await bot.send_sticker(chat_id = message.chat.id, sticker = 'CAACAgIAAxkBAAIFNWEwZLjnx4jwfiBI2RNt1_Fm1G8zAAJnDgACFdNxSGikxIOzFJ0VIAQ')
-	await message.answer('🎉🎊Добро поджаловать Los Burgos🎊🎉\nПожалуйста, перед началом отправьте нам ваш номер телефона',
+	await bot.send_sticker(chat_id = message.chat.id, sticker = 'CAACAgIAAxkBAAICR2FppV14VYaIV6jec4y4USLfPVjQAALoEgACE5FIS5lDWMG4Gy9oIQQ')
+	await message.answer('Добро поджаловать Los Burgos\n\nПожалуйста, перед началом отправьте нам ваш номер телефона',
 		reply_markup = keyboard)
 
 
@@ -238,22 +238,27 @@ async def receive_location(message):
 @dispatch.message_handler(content_types = types.ContentType.ANY)
 async def answer_validator(message):
 	config.config.logg(message, sep = True)
+	if active_users[message['from']['id']]:
+		try:
+			await bot.delete_message(message['from'].id, message.message_id)
+		except Exception as e:
+			config.config.logg(e, 1, True)
 
 
-	active_users[message['from']['id']] = {
-		'has_menu': False,
-		'amount': 0,
-		'price': 0,
-		'progress': str(),
-		'busket': list(),
-		'menu_message': None,
-		'chat_id': message['from']['id'],
-		'user': config.buildUser()
-	}
-	active_users[message['from']['id']]['has_menu'] = False
-	active_users[message['from']['id']]['progress'] = str()
+	# active_users[message['from']['id']] = {
+	# 	'has_menu': False,
+	# 	'amount': 0,
+	# 	'price': 0,
+	# 	'progress': str(),
+	# 	'busket': list(),
+	# 	'menu_message': None,
+	# 	'chat_id': message['from']['id'],
+	# 	'user': config.buildUser(message)
+	# }
+	# active_users[message['from']['id']]['has_menu'] = False
+	# active_users[message['from']['id']]['progress'] = str()
 
-	await getMenu(message)
+	# await getMenu(message)
 
 	# if config.step == 1:
 	# 	await greet(message)
