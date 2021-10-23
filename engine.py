@@ -40,7 +40,7 @@ async def replyAmount(callback):
 		await bot.answer_callback_query(callback.id, 'Добавлено в корзину')
 		await bot.delete_message(callback.from_user.id, callback.message.message_id)
 		if active_users[callback['from'].id]['amount'] <= 0:
-			pass
+			active_users[callback['from'].id]['amount'] = str()
 		else:
 			active_users[callback['from'].id]['progress'] += f" x{active_users[callback['from'].id]['amount']}"
 			active_users[callback['from'].id]['busket'].append(active_users[callback['from'].id]['progress'])
