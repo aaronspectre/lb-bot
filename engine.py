@@ -44,7 +44,7 @@ async def replyAmount(callback):
 		else:
 			active_users[callback['from'].id]['progress'] += f" x{active_users[callback['from'].id]['amount']}"
 			active_users[callback['from'].id]['busket'].append(active_users[callback['from'].id]['progress'])
-			active_users[callback['from'].id]['progress'] = str()
+			active_users[callback['from'].id]['amount'] = str()
 		await getMenu(callback)
 		return
 	elif 'reset' in callback.data:
