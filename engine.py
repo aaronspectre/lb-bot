@@ -42,7 +42,7 @@ async def replyAmount(callback):
 		if active_users[callback['from'].id]['amount'] <= 0:
 			active_users[callback['from'].id]['amount'] = str()
 		else:
-			active_users[callback['from'].id]['progress'] += f" x{active_users[callback['from'].id]['amount']}"
+			active_users[callback['from'].id]['progress'] += f" x {active_users[callback['from'].id]['amount']}"
 			active_users[callback['from'].id]['busket'].append(active_users[callback['from'].id]['progress'])
 			active_users[callback['from'].id]['amount'] = str()
 		await getMenu(callback)
@@ -89,7 +89,7 @@ async def showBusket(callback):
 	await bot.answer_callback_query(callback.id)
 	await bot.delete_message(callback.from_user.id, callback.message.message_id)
 
-	order_list = '\n'.join([f'\t{item}' for item in active_users[callback['from'].id]['busket']])
+	order_list = '\n'.join([f'- {item}' for item in active_users[callback['from'].id]['busket']])
 	keyboard = types.InlineKeyboardMarkup(row_width = 1)
 	keyboard.insert(types.InlineKeyboardButton('Очистить корзину ❌', callback_data = 'clear'))
 	keyboard.insert(types.InlineKeyboardButton('Назад ⬅️', callback_data = 'goback'))
@@ -122,9 +122,10 @@ async def clearBusket(callback):
 @dispatch.callback_query_handler(lambda c: 'ready' in c.data)
 async def ready(callback):
 	await bot.answer_callback_query(callback.id)
-	config.config.logg(active_users[callback['from'].id]['busket'])
+	active_users[callback['from'].id]['menu_message'] = callback.message.message_id
+	config.config.logg(active_users[callback['from'].id]['busket'], 3, True)
 
-	order_list = '\n'.join([f'\t{item}' for item in active_users[callback['from'].id]['busket']])
+	order_list = '\n'.join([f'- {item}' for item in active_users[callback['from'].id]['busket']])
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True)
 	keyboard.add(types.KeyboardButton('Отправить 📍', request_location = True))
 	await bot.send_message(
@@ -139,18 +140,22 @@ async def ignore(callback):
 	await bot.answer_callback_query(callback.id)
 
 
+
 async def orderDone(message):
 
 	config.config.logg(message, sep = True)
+	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True)
+	keyboard.add(types.KeyboardButton('Новый Заказ'))
+
 
 	if server.send(active_users[message['from'].id]['busket'], active_users[message['from'].id]['user']):
-		order_list = '\n'.join([f'\t{item}' for item in active_users[message['from'].id]['busket']])
-		bill_of_order_text = f"""Чек\n\nВаш заказ:\n{order_list}\n\nОбщая цена: 31,823.92$\nid: {message['from'].id}\n\nBon Appétit!"""
-		await message.answer(bill_of_order_text, reply_markup = types.ReplyKeyboardRemove())
+		order_list = '\n'.join([f'- {item}' for item in active_users[message['from'].id]['busket']])
+		bill_of_order_text = f"""Чек\n\nВаш заказ:\n{order_list}\n\nОбщая цена: 150000UZS\n№ заказа: {message['from'].id}"""
+		await message.answer(bill_of_order_text, reply_markup = keyboard)
 		active_users[message['from'].id]['busket'].clear()
 		await bot.delete_message(message['from'].id, active_users[message['from'].id]['menu_message'])
 	else:
-		await message.answer('Что-то пошло не так 🙁, Пожалуйста повторите позже')
+		await message.answer('Что-то пошло не так 🙁, Пожалуйста повторите позже', reply_markup = keyboard)
 		await bot.delete_message(message['from'].id, active_users[message['from'].id]['menu_message'])
 
 
@@ -159,18 +164,14 @@ async def orderDone(message):
 
 
 async def getMenu(message):
-	keyboard = types.InlineKeyboardMarkup(row_width = 2)
-	keyboard.insert(types.InlineKeyboardButton('Corndog 🥩', callback_data = 'corndogsimp'))
-	keyboard.insert(types.InlineKeyboardButton('Corndog 🍗', callback_data = 'corndogchick'))
-	keyboard.insert(types.InlineKeyboardButton('Corndog 🥩 with 🧀', callback_data = 'corndogsimp_ch'))
-	keyboard.insert(types.InlineKeyboardButton('Corndog 🍗 with 🧀', callback_data = 'corndogchick_ch'))
-	keyboard.add(types.InlineKeyboardButton('Корзина 🛒', callback_data = 'busket'))
+	inline_keyboard = build_keyboard('menu')
+
 
 	if len(active_users[message['from'].id]['busket']) != 0:
-		keyboard.insert(types.InlineKeyboardButton('Готово ✅', callback_data = 'ready'))
+		inline_keyboard.insert(types.InlineKeyboardButton('Готово ✅', callback_data = 'ready'))
 
 	try:
-		await bot.send_message(active_users[message['from'].id]['chat_id'], 'Меню', reply_markup = keyboard)
+		await bot.send_message(active_users[message['from'].id]['chat_id'], 'Меню', reply_markup = inline_keyboard)
 	except Exception as e:
 		config.config.logg(e, 1, True)
 
@@ -240,7 +241,8 @@ async def receive_contact(message):
 
 	active_users[message['from']['id']]['user']['contact'] = message.contact.phone_number
 
-	await bot.send_message(active_users[message['from'].id]['chat_id'], 'Ок', reply_markup = types.ReplyKeyboardRemove())
+	menu = 'AgACAgIAAxkBAAIFEmF1T-puaG17jHxJFziorW_YF7b_AAKytDEbZCqoSxeL7OMpkrRWAQADAgADcwADIQQ'
+	await bot.send_photo(message['from'].id, menu, reply_markup = build_keyboard('menu_pic'))
 	await getMenu(message)
 
 
@@ -252,7 +254,9 @@ async def receive_location(message):
 	active_users[message['from']['id']]['user']['location']['latitude'] = message.location['latitude']
 	active_users[message['from']['id']]['user']['location']['longitude'] = message.location['longitude']
 
-	# Need to check for full data
+	if len(active_users[message['from']['id']]['busket']) == 0:
+		await bot.delete_message(message['from']['id'], message.message_id)
+		return
 
 	await orderDone(message)
 
@@ -263,13 +267,45 @@ async def receive_location(message):
 @dispatch.message_handler(content_types = types.ContentType.ANY)
 async def answer_validator(message):
 	config.config.logg(message, sep = True)
-	if active_users[message['from']['id']]:
-		try:
-			await bot.delete_message(message['from'].id, message.message_id)
-		except Exception as e:
-			config.config.logg(e, 1, True)
+
+	try:
+		if 'Новый' in message.text:
+			menu = 'AgACAgIAAxkBAAIFEmF1T-puaG17jHxJFziorW_YF7b_AAKytDEbZCqoSxeL7OMpkrRWAQADAgADcwADIQQ'
+			await bot.send_photo(message['from'].id, menu, reply_markup = build_keyboard('menu_pic'))
+			await getMenu(message)
+			del menu
+			return
+	except Exception as e:
+		config.config.logg(e, 1, True)
 
 
+
+
+	try:
+		await bot.delete_message(message['from'].id, message.message_id)
+	except Exception as e:
+		config.config.logg(e, 1, True)
+
+
+
+
+
+def build_keyboard(source = None):
+	if source == 'menu_pic':
+		keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True)
+		keyboard.add(types.KeyboardButton('Настройки'))
+		keyboard.insert(types.KeyboardButton('Условия использования'))
+		keyboard.add(types.KeyboardButton('Помощь'))
+		keyboard.insert(types.KeyboardButton('История заказов'))
+		return keyboard
+	if source == 'menu':
+		keyboard = types.InlineKeyboardMarkup(row_width = 2)
+		keyboard.insert(types.InlineKeyboardButton('Corndog 🥩', callback_data = 'corndogsimp'))
+		keyboard.insert(types.InlineKeyboardButton('Corndog 🍗', callback_data = 'corndogchick'))
+		keyboard.insert(types.InlineKeyboardButton('Corndog 🥩 with 🧀', callback_data = 'corndogsimp_ch'))
+		keyboard.insert(types.InlineKeyboardButton('Corndog 🍗 with 🧀', callback_data = 'corndogchick_ch'))
+		keyboard.add(types.InlineKeyboardButton('Корзина 🛒', callback_data = 'busket'))
+		return keyboard
 
 
 
