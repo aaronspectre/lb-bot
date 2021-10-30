@@ -20,6 +20,7 @@ async def replyMenu(callback):
 	config.config.logg(callback, sep = True)
 	active_users[callback['from'].id]['menu_message'] = callback.message.message_id
 	active_users[callback['from'].id]['progress'] = config.config.getName(callback.message.reply_markup.inline_keyboard, callback.data)
+	active_users[callback['from'].id]['busket'][active_users[callback['from'].id]['progress']] = str()
 
 	await bot.answer_callback_query(callback.id)
 	await bot.delete_message(callback.from_user.id, callback.message.message_id)
@@ -42,12 +43,12 @@ async def replyAmount(callback):
 		if active_users[callback['from'].id]['amount'] <= 0:
 			active_users[callback['from'].id]['amount'] = str()
 		else:
-			active_users[callback['from'].id]['progress'] += f" x {active_users[callback['from'].id]['amount']}"
-			active_users[callback['from'].id]['busket'].append(active_users[callback['from'].id]['progress'])
+			active_users[callback['from'].id]['busket'][active_users[callback['from'].id]['progress']] = active_users[callback['from'].id]['amount']
 			active_users[callback['from'].id]['amount'] = str()
 		await getMenu(callback)
 		return
 	elif 'reset' in callback.data:
+		await bot.answer_callback_query(callback.id)
 		active_users[callback['from'].id]['amount'] = str()
 
 	else:
@@ -82,6 +83,38 @@ async def replyAmount(callback):
 
 
 
+async def manage_busket(callback, flag = None):
+	if len(active_users[callback['from'].id]['busket']) == 0:
+		keyboard = types.InlineKeyboardMarkup(row_width = 1)
+		keyboard.add(types.InlineKeyboardButton('Меню ⬅️', callback_data = 'goback'))
+		if flag == 'edit':
+			await bot.edit_message_text(
+				chat_id = callback.from_user.id,
+				text = 'Корзина пуста',
+				message_id = callback.message.message_id,
+				reply_markup = keyboard)
+		else:
+			await bot.send_message(callback.from_user.id, 'Корзина пуста', reply_markup = keyboard)
+
+	else:
+		order_list = '\n'.join([f'- {item} x {amount}' for item, amount in active_users[callback['from'].id]['busket'].items()])
+		keyboard = types.InlineKeyboardMarkup(row_width = 3)
+		for item in active_users[callback['from'].id]['busket'].keys():
+			keyboard.insert(types.InlineKeyboardButton('➖', callback_data = f'edit_minus_{item}'))
+			keyboard.insert(types.InlineKeyboardButton(str(item), callback_data = f'ignore'))
+			keyboard.insert(types.InlineKeyboardButton('➕', callback_data = f'edit_plus_{item}'))
+		keyboard.add(types.InlineKeyboardButton('Очистить корзину ❌', callback_data = 'clear'))
+		keyboard.add(types.InlineKeyboardButton('Назад ⬅️', callback_data = 'goback'))
+		if flag == 'edit':
+			await bot.edit_message_text(
+				chat_id = callback.from_user.id,
+				text = f"Ваш заказ:\n\n{order_list}\n",
+				message_id = callback.message.message_id,
+				reply_markup = keyboard)
+		else:
+			await bot.send_message(callback.from_user.id, f"Ваш заказ:\n\n{order_list}\n", reply_markup = keyboard)
+
+
 
 @dispatch.callback_query_handler(lambda c: 'busket' in c.data)
 async def showBusket(callback):
@@ -89,12 +122,27 @@ async def showBusket(callback):
 	await bot.answer_callback_query(callback.id)
 	await bot.delete_message(callback.from_user.id, callback.message.message_id)
 
-	order_list = '\n'.join([f'- {item}' for item in active_users[callback['from'].id]['busket']])
-	keyboard = types.InlineKeyboardMarkup(row_width = 1)
-	keyboard.insert(types.InlineKeyboardButton('Очистить корзину ❌', callback_data = 'clear'))
-	keyboard.insert(types.InlineKeyboardButton('Назад ⬅️', callback_data = 'goback'))
+	await manage_busket(callback)
 
-	await bot.send_message(callback.from_user.id, f'Ваш заказ:\n\n{order_list}', reply_markup = keyboard)
+
+
+@dispatch.callback_query_handler(lambda c: 'edit' in c.data)
+async def edit_busket(callback):
+	config.config.logg(callback, sep = True)
+	action = callback.data.split('_')[1]
+	item = callback.data.split('_')[2]
+	if action == 'plus':
+		config.config.logg(item, sep = True)
+		active_users[callback['from']['id']]['busket'][item] += 1
+	else:
+		if active_users[callback['from']['id']]['busket'][item] > 0:
+			active_users[callback['from']['id']]['busket'][item] -= 1
+			if active_users[callback['from']['id']]['busket'][item] == 0:
+				del active_users[callback['from']['id']]['busket'][item]
+
+	await bot.answer_callback_query(callback.id)
+
+	await manage_busket(callback, 'edit')
 
 
 
@@ -125,7 +173,7 @@ async def ready(callback):
 	active_users[callback['from'].id]['menu_message'] = callback.message.message_id
 	config.config.logg(active_users[callback['from'].id]['busket'], 3, True)
 
-	order_list = '\n'.join([f'- {item}' for item in active_users[callback['from'].id]['busket']])
+	order_list = '\n'.join([f'- {item} x {amount}' for item, amount in active_users[callback['from'].id]['busket'].items()])
 	keyboard = types.ReplyKeyboardMarkup(resize_keyboard = True, one_time_keyboard = True)
 	keyboard.add(types.KeyboardButton('Отправить 📍', request_location = True))
 	await bot.send_message(
@@ -209,7 +257,7 @@ async def greet(message):
 	active_users[message['from']['id']] = {
 		'amount': str(),
 		'progress': str(),
-		'busket': list(),
+		'busket': dict(),
 		'menu_message': None,
 		'chat_id': message['from']['id'],
 		'user': {
