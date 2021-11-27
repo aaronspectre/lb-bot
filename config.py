@@ -3,7 +3,7 @@ import datetime
 
 class Config:
 	def __init__(self):
-		self.TOKEN = '1978222621:AAEzW9QW1mPOvww8tnlBS9-MtVLyEGuZqQo'
+		self.TOKEN = '2023199506:AAExb6Ne1RburJg970UOSKz8YXDXOedB3AI'
 		self.SERVER_TOKEN = ''
 		self.log_file = open('log.txt', 'a')
 
