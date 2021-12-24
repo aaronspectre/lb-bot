@@ -59,7 +59,6 @@ def buildUser(message):
 	user['id'] = message['from'].id
 	user['username'] = message['from'].username
 	user['name'] = message['from'].first_name
-	user['chat_id'] = message['chat'].id
 	user['location'] = dict()
 	user['contact'] = str()
 
@@ -68,5 +67,19 @@ def buildUser(message):
 
 	return user
 
+
+def makeUser(message):
+	user = list()
+	user.append(message['from'].id)
+	if message['from'].username == None:
+		user.append('empty')
+	else:
+		user.append(message['from'].username)
+	user.append(message['from'].first_name)
+	user.append(message.contact.phone_number)
+	user.append(str())
+	user.append(str())
+
+	return user
 
 config = Config()
