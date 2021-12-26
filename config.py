@@ -1,27 +1,26 @@
 import datetime
-
+import json
 
 class Config:
 	def __init__(self):
 		self.TOKEN = '2023199506:AAExb6Ne1RburJg970UOSKz8YXDXOedB3AI'
 		self.SERVER_TOKEN = ''
-		self.log_file = open('log.txt', 'a')
 
 
 	def logg(self, message, level = 3, sep = False):
-		if sep:
-			print('\n\n')
-			self.log_file.write('\n\n')
-
 		if level == 1:
-			self.log_file.write(f'[!] {message} || {datetime.datetime.now()}')
+			log_file = open('log.txt', 'a', encoding = 'utf-8')
+			log_file.write(f'[!] {message} || {datetime.datetime.now()}')
 			print(f'[!] {message}')
+			log_file.close()
 		elif level == 2:
-			self.log_file.write(f'[#] {message} || {datetime.datetime.now()}')
 			print(f'[#] {message}')
 		else:
-			# self.log_file.write(f'[+] {message} || {datetime.datetime.now()}')
 			print(f'[+] {message}')
+
+
+		if sep:
+			print('\n\n')
 
 
 
@@ -43,14 +42,17 @@ class Config:
 
 def buildOrder(data, user):
 	final = {
-		'order': data,
+		'order': list(),
 		'cname': user['name'],
-		'phone': '+'+user['contact'],
+		'phone': user['contact'],
 		'location': user['location'],
 		'id': user['id'],
 		'username': '@'+user['username']
 	}
+	for item in data:
+		final['order'].append(item.details())
 
+	print(final)
 	return final
 
 
@@ -59,7 +61,7 @@ def buildUser(message):
 	user['id'] = message['from'].id
 	user['username'] = message['from'].username
 	user['name'] = message['from'].first_name
-	user['location'] = dict()
+	user['location'] = list()
 	user['contact'] = str()
 
 	if user['username'] is None:
@@ -77,8 +79,8 @@ def makeUser(message):
 		user.append(message['from'].username)
 	user.append(message['from'].first_name)
 	user.append(message.contact.phone_number)
-	user.append(str())
-	user.append(str())
+	user.append(json.dumps(list()))
+	user.append(json.dumps(list()))
 
 	return user
 

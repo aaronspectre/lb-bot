@@ -9,10 +9,10 @@ class Server:
 		# self.ADDRESS = 'http://localhost:8000/bot/'
 
 
-	def send(self, data, user):
-		final = json.dumps(config.buildOrder(data, user))
+	def send(self, data, user, db):
+		final = config.buildOrder(data, user)
 		config.config.logg(final, sep = True)
-
+		final = json.dumps(final)
 		try:
 			response = requests.post(self.ADDRESS, {'data': final})
 			if response.text == 'Got':

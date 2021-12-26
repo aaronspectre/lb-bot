@@ -39,6 +39,18 @@ class DataBase:
 			return False
 
 
+	def edit(self, field, data, symbol):
+		print(data)
+		self.cursor.execute(f"""update users set {field} = ? where chat_id = ?""", (data, symbol))
+		self.connection.commit()
+		return True
+		try:
+			pass
+		except Exception as e:
+			print(e)
+			return False
+
+
 
 	def delete(self, field, symbol):
 		try:
@@ -52,4 +64,4 @@ class DataBase:
 
 if __name__ == '__main__':
 	db = DataBase()
-	print(db.delete('name', 'Cactus'))
+	print(db.edit('order', '["Тако 🍗 x 8 - 0"]', 710810997))
